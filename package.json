@@ -1,0 +1,21 @@
+{
+  "name": "mern-todo",
+  "version": "1.0.0",
+  "description": "MERN application with CRUD functionality",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "server": "nodemon --exec \"npm start\""
+  },
+  "author": "Jeff Dinkelman",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.2",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
