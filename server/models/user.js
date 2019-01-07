@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
+//The schema that will be used with the each user instance.
 const UserSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -22,6 +23,7 @@ const UserSchema = new mongoose.Schema({
   }
 });
 
+//Create the User model used to instantiate user instances.
 const User = mongoose.model('User', UserSchema);
 
 module.exports = {User};

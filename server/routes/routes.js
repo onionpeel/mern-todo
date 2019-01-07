@@ -3,7 +3,8 @@ const router = express.Router();
 const {mongoose} = require('./../db/mongoose');
 const {User} = require('./../models/user');
 
-router.post('/', async (req, res) => {
+//Create a new user
+router.post('/users', async (req, res) => {
   try {
     const user = new User({
       email: req.body.email,
@@ -16,7 +17,8 @@ router.post('/', async (req, res) => {
   };
 });
 
-router.get('/', async (req, res) => {
+//Retrieve all users
+router.get('/users', async (req, res) => {
   try {
     const users = await User.find({});
     res.send(users);
@@ -25,7 +27,9 @@ router.get('/', async (req, res) => {
   };
 });
 
-router.delete('/:id', async (req, res) => {
+
+//Delete a user by id
+router.delete('/users/:id', async (req, res) => {
   try {
     const id = req.params.id;
     const deletedUser = await User.findByIdAndDelete(id);
