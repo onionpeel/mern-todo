@@ -9,8 +9,8 @@ router.post('/', async (req, res) => {
       email: req.body.email,
       password: req.body.password
     });
-    await user.save();
-    res.send(user);
+    const savedUser = await user.save();
+    res.send(savedUser);
   } catch (e) {
     res.status(400).send();
   };
@@ -21,6 +21,16 @@ router.get('/', async (req, res) => {
     const users = await User.find({});
     res.send(users);
   } catch (e) {
+    res.status(400).send();
+  };
+});
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const id = req.params.id;
+    const deletedUser = await User.findByIdAndDelete(id);
+    res.send(deletedUser);
+  }catch (e) {
     res.status(400).send();
   };
 });
