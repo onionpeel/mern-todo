@@ -2,6 +2,40 @@ const express = require('express');
 const router = express.Router();
 const {mongoose} = require('./../db/mongoose');
 const {User} = require('./../models/user');
+const {Todo} = require('./../models/todo');
+
+//Create a new todo
+router.post('/todos', async (req, res) => {
+  try{
+    const todo = new Todo({
+      name: req.body.name
+    });
+
+    const newTodo = await todo.save();
+    res.send(newTodo);
+  }catch(e) {
+    res.status(400).send();
+  };
+});
+
+router.get('/todos', async (req, res) => {
+  try{
+    const todos = await Todo.find({});
+    res.send(todos);
+  }catch(e) {
+    res.status(400).send();
+  };
+});
+
+router.delete('/todos/:id', async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deletedTodo = await Todo.findByIdAndDelete({_id: id});
+    res.send(deletedTodo);
+  }catch(e){
+    res.status(404).send();
+  };
+});
 
 //Create a new user
 router.post('/users', async (req, res) => {
